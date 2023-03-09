@@ -13,7 +13,7 @@ pair = 0
 socks_set = list(set(socks))
 
 for value in socks_set:
-    pair += socks.count(value) / 2
+    pair += socks.count(value) // 2
 
 while len(socks) != 0:
     t = socks.pop()

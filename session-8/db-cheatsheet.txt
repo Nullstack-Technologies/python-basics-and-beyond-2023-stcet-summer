@@ -1,0 +1,68 @@
+"""
+    Database.
+    Relational Databases
+    -> PostgreSQL and SQLite
+""" 
+
+
+# LIBRARY -> BOOK, AUTHOR
+
+BOOK -> ID, Name, Price, ISBN, AUTHOR
+AUTHOR -> ID, Name, Rating
+# POSTGRES
+
+
+# CREATE Database.
+CREATE DATABASE library_management_system;
+
+# DROP DATABASE
+DROP DATABASE library_management_system;
+
+# CRUD -> Create, Retrieve, Update and Delete
+
+# CREATE TABLE 
+CREATE TABLE author (
+    id int NOT NULL PRIMARY KEY,
+    name varchar(150) NOT NULL
+);
+
+CREATE TABLE BOOK (
+    id int NOT NULL PRIMARY KEY,
+    name varchar(150) NOT NULL,
+    isbn varchar(13) NOT NULL UNIQUE,
+    price int,
+    author_id int,
+    CONSTRAINT fk_author
+        FOREIGN KEY(author_id)
+            REFERENCES author(id)
+);
+
+# INSERT 
+INSERT INTO author(id, name) VALUES(1, 'Jordan Peterson');
+INSERT INTO author(id, name) VALUES(2, 'Morgan Housel');
+
+INSERT INTO book(id, name, isbn, price, author_id) VALUES(1, 'Psychology of Money', '12345678901', 900, 2);
+INSERT INTO book(id, name, isbn, price, author_id) VALUES(2, '12 Rules of Life', '12345678902', 900, 1);
+
+
+# RETRIEVE 
+# SELECTING ALL ROWS
+SELECT * FROM author;
+
+# SELECT ROWS WITH CONDITIONS
+SELECT * FROM author;
+SELECT name, id FROM author WHERE name like 'Jordan Peterson';
+SELECT name, id FROM author WHERE name like '%Jordan%';
+SELECT name, id FROM author WHERE name like '%Jordan%' and id > 0;
+SELECT name, id FROM author WHERE id > 1 or name like '%Jordan%';
+
+# UPDATE 
+UPDATE author SET name ='Jordan 1' WHERE name like '%Jordan%';
+UPDATE author SET name ='Jordan Peterson';
+
+# DELETE DATA
+DELETE FROM author WHERE id > 1;
+DELETE FROM author;
+
+# DROP TABLE
+DROP TABLE author;

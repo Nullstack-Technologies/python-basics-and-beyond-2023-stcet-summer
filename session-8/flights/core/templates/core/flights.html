@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+{{ name }}
+
+{% for flight in flights %}
+<li> {{ flight.frm }} to {{ flight.to }} | {{ flight.date_time }}</li>
+{% endfor %}
+
+{% endblock content %}
